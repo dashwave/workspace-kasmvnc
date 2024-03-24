@@ -153,8 +153,6 @@ RUN \
   cd lib && \
   ln -s /usr/lib/xorg/modules/dri dri && \
   cd /src && \
-  mkdir -p builder/www && \
-  cp -ax /www/* builder/www/ && \
   make servertarball && \
   mkdir /build-out && \
   tar xzf \
