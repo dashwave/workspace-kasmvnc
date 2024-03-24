@@ -303,7 +303,6 @@ RUN \
     | tar xzvf - -C /kasmbins/ && \
   chmod +x /kasmbins/* && \
   chown -R 1000:1000 /kasmbins && \
-  chown 1000:1000 /usr/share/kasmvnc/www/Downloads && \
   echo "**** dind support ****" && \
   addgroup -S dockremap && \
   adduser -S -G dockremap dockremap && \
