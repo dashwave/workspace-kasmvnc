@@ -1,32 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:12-buster as wwwstage
-
-ARG KASMWEB_RELEASE="54b9bac920267e902af3c9dfca4c0f64cff92f41"
-
-RUN \
-  echo "**** build clientside ****" && \
-  export QT_QPA_PLATFORM=offscreen && \
-  export QT_QPA_FONTDIR=/usr/share/fonts && \
-  mkdir /src && \
-  cd /src && \
-  wget https://github.com/kasmtech/noVNC/tarball/${KASMWEB_RELEASE} -O - \
-    | tar  --strip-components=1 -xz && \
-  npm install && \
-  npm run-script build
-
-RUN \
-  echo "**** organize output ****" && \
-  mkdir /build-out && \
-  cd /src && \
-  rm -rf node_modules/ && \
-  cp -R ./* /build-out/ && \
-  cd /build-out && \
-  rm *.md && \
-  rm AUTHORS && \
-  cp index.html vnc.html && \
-  mkdir Downloads
-
+FROM registry.dashwave.io/workspace-kasmvnc-client as wwwstage
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as buildstage
 
