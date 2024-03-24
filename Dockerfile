@@ -139,26 +139,6 @@ RUN \
   find . -name "Makefile" -exec sed -i 's/-Werror=array-bounds//g' {} \; && \
   make -j4
 
-RUN \
-  echo "**** generate final output ****" && \
-  cd /src && \
-  mkdir -p xorg.build/bin && \
-  cd xorg.build/bin/ && \
-  ln -s /src/unix/xserver/hw/vnc/Xvnc Xvnc && \
-  cd .. && \
-  mkdir -p man/man1 && \
-  touch man/man1/Xserver.1 && \
-  cp /src/unix/xserver/hw/vnc/Xvnc.man man/man1/Xvnc.1 && \
-  mkdir lib && \
-  cd lib && \
-  ln -s /usr/lib/xorg/modules/dri dri && \
-  cd /src && \
-  make servertarball && \
-  mkdir /build-out && \
-  tar xzf \
-    kasmvnc-Linux*.tar.gz \
-    -C /build-out/
-
 # nodejs builder
 FROM ghcr.io/linuxserver/baseimage-alpine:3.19 as nodebuilder
 ARG KCLIENT_RELEASE
