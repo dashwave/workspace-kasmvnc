@@ -200,7 +200,6 @@ ENV DISPLAY=:1 \
 
 # copy over build output
 COPY --from=nodebuilder /kclient /kclient
-COPY --from=buildstage /build-out/ /
 
 RUN \
   echo "**** install deps ****" && \
