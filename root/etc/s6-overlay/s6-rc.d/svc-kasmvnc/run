@@ -13,7 +13,6 @@ exec s6-setuidgid abc \
     ${HW3D} \
     -PublicIP 127.0.0.1 \
     -drinode ${DRINODE} \
-    -disableBasicAuth \
     -SecurityTypes None \
     -AlwaysShared \
     -http-header Cross-Origin-Embedder-Policy=require-corp \
@@ -24,3 +23,4 @@ exec s6-setuidgid abc \
     -websocketPort 6901 \
     -interface 0.0.0.0 \
     -Log *:stdout:10
+    # -disableBasicAuth \

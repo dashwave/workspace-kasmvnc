@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM registry.dashwave.io/workspace-kasmvnc-client as wwwstage
+FROM registry.dashwave.io/workspace-kasmvnc-client:fix as wwwstage
 
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as buildstage
 
