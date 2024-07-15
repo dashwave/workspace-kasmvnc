@@ -153,7 +153,7 @@ RUN \
 
 # nodejs builder
 FROM ghcr.io/linuxserver/baseimage-ubuntu:jammy as nodebuilder
-ARG KCLIENT_RELEASE
+ARG KCLIENT_RELEASE=0.3.10
 
 RUN \
   echo "**** install build deps ****" && \
@@ -171,14 +171,11 @@ RUN \
     libpulse-dev \
     make \
     nodejs
-	
+
+
 RUN \
   echo "**** grab source ****" && \
   mkdir -p /kclient && \
-  if [ -z ${KCLIENT_RELEASE+x} ]; then \
-    KCLIENT_RELEASE=$(curl -sX GET "https://api.github.com/repos/linuxserver/kclient/releases/latest" \
-    | awk '/tag_name/{print $4;exit}' FS='[""]'); \
-  fi && \
   curl -o \
   /tmp/kclient.tar.gz -L \
     "https://github.com/linuxserver/kclient/archive/${KCLIENT_RELEASE}.tar.gz" && \
